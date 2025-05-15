@@ -1,0 +1,66 @@
+# Bạn có thể xóa dòng 'version' này nếu muốn, nó không còn cần thiết
+# version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile # Đảm bảo bạn có Dockerfile trong thư mục Frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Frontend:/app
+      # Sử dụng named volume cho node_modules để cache và tăng tốc độ build lại
+      - frontend_node_modules:/app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Cần thiết cho hot-reloading trên một số hệ thống
+      - WDS_SOCKET_PORT=0 # Đôi khi cần để giải quyết vấn đề với WebSocket
+    # Nếu frontend cần truy cập backend qua một tên miền cụ thể (ví dụ: api.mynote.test)
+    # thì cần cấu hình network và có thể là một reverse proxy (như Nginx)
+    # Đảm bảo container frontend có thể "thấy" container backend.
+    # Depends_on chỉ đảm bảo thứ tự khởi động, không phải network visibility.
+    stdin_open: true # Giữ stdin mở
+    tty: true        # Phân bổ một pseudo-TTY
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www/html
+      # Đảm bảo rằng .env file được sử dụng nếu nó tồn tại trong ./backend
+      # Laravel sẽ tự động đọc nó từ thư mục gốc của dự án (/var/www/html trong container)
+    env_file:
+      - ./backend/.env
+    # Nếu bạn muốn container backend có một tên cố định
+    container_name: my_note_app_backend
+    depends_on: # Backend depends on MySQL
+      - db_mysql
+
+  db_mysql:
+    image: mysql:8.0
+    container_name: my_note_app_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-laravel_db} # Use DB_DATABASE from .env, default to laravel_db
+      MYSQL_USER: ${DB_USERNAME:-user}           # Use DB_USERNAME from .env, default to user
+      MYSQL_PASSWORD: ${DB_PASSWORD:-password}       # Use DB_PASSWORD from .env, default to password
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-secret} # Use DB_ROOT_PASSWORD from .env, default to secret
+    ports:
+      # Map port 33060 on host to 3306 in container for external access if needed
+      - "33060:3306" 
+    volumes:
+      - mysql_data:/var/lib/mysql # Persist MySQL data
+    healthcheck: # Optional: check if MySQL is ready
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+# Định nghĩa named volume đã sử dụng ở trên
+volumes:
+  frontend_node_modules:
+  mysql_data: # Named volume for MySQL data persistence

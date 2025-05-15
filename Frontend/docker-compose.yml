@@ -1,0 +1,26 @@
+# Sử dụng một image Node.js LTS (Long Term Support) làm base
+FROM node:18-alpine
+
+# Đặt thư mục làm việc trong container
+WORKDIR /usr/src/app
+
+# Sao chép package.json và package-lock.json (hoặc yarn.lock nếu bạn dùng Yarn)
+# Điều này giúp tận dụng Docker layer caching, chỉ cài lại dependencies khi các tệp này thay đổi.
+COPY package*.json ./
+# COPY yarn.lock ./ # Nếu bạn dùng yarn
+
+# Cài đặt các dependencies bên trong container
+RUN npm install
+# RUN yarn install # Nếu bạn dùng yarn
+
+# Sao chép toàn bộ mã nguồn của frontend vào thư mục làm việc trong container
+COPY . .
+
+# Mở cổng mà Vite dev server thường chạy (mặc định của Vite là 5173)
+EXPOSE 5173
+
+# Lệnh để khởi chạy Vite dev server khi container bắt đầu
+# Cờ "--host" rất quan trọng để server có thể được truy cập từ bên ngoài container (tức là từ máy Mac của bạn)
+CMD ["npm", "run", "dev", "--", "--host"]
+# Nếu bạn dùng yarn:
+# CMD ["yarn", "dev", "--host"]

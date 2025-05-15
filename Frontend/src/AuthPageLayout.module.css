@@ -1,0 +1,105 @@
+/* src/AuthPageLayout.module.css */
+/* File này chứa style chung cho các trang auth có dạng một card ở giữa */
+/* Bạn có thể điều chỉnh để phù hợp với RegisterPage và ForgotPasswordPage */
+
+.pageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F0F2FD;
+    /* Màu nền chung */
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.formCard {
+    background-color: #FFFFFF;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 480px;
+    /* Điều chỉnh max-width nếu cần */
+    /* Nếu bạn muốn thiết kế 2 cột cho RegisterPage giống LoginPage,
+       bạn sẽ cần style cho .container, .leftPanel, .rightPanel ở đây
+       và cấu trúc lại JSX trong RegisterPage.jsx */
+}
+
+/* Nếu RegisterPage có thiết kế 2 cột giống LoginPage, bạn sẽ cần các class sau: */
+/*
+  .container {
+    width: 100%;
+    max-width: 900px;
+    min-height: 550px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+  }
+  
+  .leftPanel {
+    flex: 1.2;
+    background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%); // Ví dụ màu
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 50px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .welcomeTitle { // Dùng cho leftPanel
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .welcomeText { // Dùng cho leftPanel
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .rightPanelContent { // Div chứa RegisterForm nếu có leftPanel
+    flex: 1;
+    padding: 40px; // Điều chỉnh padding
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .formCard {
+        padding: 25px 30px;
+        margin-top: 20px;
+        /* Thêm khoảng trống trên mobile nếu cần */
+        margin-bottom: 20px;
+    }
+
+    /* Nếu có .container cho 2 cột, bạn sẽ làm nó thành flex-direction: column ở đây */
+    /*
+    .container {
+      flex-direction: column;
+      min-height: auto;
+      max-width: 100%;
+    }
+    .leftPanel, .rightPanelContent {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+    .leftPanel {
+      min-height: 200px;
+      border-radius: 20px 20px 0 0;
+    }
+    .rightPanelContent {
+       border-radius: 0 0 20px 20px;
+    }
+    */
+}

@@ -1,0 +1,426 @@
+/* LoginPage.module.css */
+
+/* --- General Styles --- */
+.pageWrapper {
+  background-color: #F0F2FD;
+  /* <<<< TRẢ LẠI MÀU NỀN CŨ */
+  min-height: 100vh;
+  /* <<<< Đảm bảo wrapper cao ít nhất bằng viewport */
+  display: flex;
+  /* <<<< Sử dụng flex để căn giữa */
+  justify-content: center;
+  /* <<<< Căn giữa .container theo chiều ngang */
+  align-items: center;
+  /* <<<< Căn giữa .container theo chiều dọc */
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  padding: 20px;
+  /* <<<< Thêm padding xung quanh .container */
+  box-sizing: border-box;
+  /* Bỏ các thuộc tính width/height 100vw/vh và position fixed nếu có */
+}
+
+.container {
+  width: 100%;
+  /* <<<< Chiếm 100% chiều rộng của padding trong pageWrapper */
+  max-width: 900px;
+  /* <<<< GIỚI HẠN chiều rộng tối đa của form */
+  min-height: 550px;
+  /* <<<< Chiều cao tối thiểu cho form */
+  background-color: #fff;
+  /* Nền trắng cho khối container chung (sẽ bị panel con che) */
+  border-radius: 20px;
+  /* <<<< TRẢ LẠI bo góc */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  /* <<<< TRẢ LẠI bóng đổ */
+  display: flex;
+  overflow: hidden;
+  /* <<<< TRẢ LẠI để bo góc hoạt động đúng với panel con */
+  flex-direction: row;
+}
+
+/* --- Left Panel Styles --- */
+.leftPanel {
+  flex: 1.2;
+  background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 50px;
+  text-align: center;
+  box-sizing: border-box;
+  /* Bỏ height: 100% nếu có, để nó tự điều chỉnh theo min-height của container */
+  /* overflow-y: auto; */
+  /* Có thể giữ lại nếu nội dung panel có thể dài */
+}
+
+.leftPanelContent {
+  max-width: 400px;
+}
+
+.leftTitle {
+  font-size: 36px;
+  
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.leftText {
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 100%;
+}
+
+.signUpButton {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  border-radius: 25px;
+  /* Giữ bo góc này */
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signUpButton:hover {
+  background-color: #FFFFFF;
+  color: #5D54A4;
+  /* Hoặc màu tím bạn đã chọn trước đó */
+}
+
+/* --- Right Panel Styles (Sign In Form) --- */
+.rightPanel {
+  flex: 1;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  /* Bỏ height: 100% nếu có */
+  overflow-y: auto;
+  /* Cho phép scroll nếu form dài */
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.rightTitle {
+  color: #3D4C8D;
+  font-size: 28px;
+  /* Giữ nguyên hoặc điều chỉnh */
+  font-weight: bold;
+  margin-bottom: 35px;
+  text-align: left;
+  /* Hoặc center nếu bạn thích */
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Giữ nguyên hoặc điều chỉnh */
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A0AEC0;
+  font-size: 18px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 18px 16px 50px;
+  /* Giữ nguyên hoặc điều chỉnh */
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  /* Viền cũ */
+  font-size: 15px;
+  color: #333;
+  background-color: #F7F8FC;
+  /* Màu nền input cũ */
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #A0AEC0;
+}
+
+.input:focus {
+  border-color: #A3BFFA;
+  /* Màu viền focus cũ */
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  /* Bóng mờ cũ */
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  /* Giữ nguyên hoặc điều chỉnh */
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.rememberMeLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #718096;
+  /* Màu chữ cũ */
+}
+
+.checkbox {
+  margin-right: 8px;
+  width: 15px;
+  height: 15px;
+  accent-color: #4299E1;
+  /* Màu checkbox cũ */
+  /* border: 1px solid #DDE2E8; */
+  /* Bỏ viền này nếu trước không có */
+  /* border-radius: 3px; */
+}
+
+.forgotPasswordLink {
+  color: #667EEA;
+  /* Màu link cũ */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgotPasswordLink:hover {
+  text-decoration: underline;
+}
+
+.signInButton {
+  width: 100%;
+  padding: 16px;
+  /* Giữ nguyên hoặc điều chỉnh */
+  background-color: #4299E1;
+  /* Màu nút cũ */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.signInButton:hover {
+  background-color: #3182CE;
+  /* Màu hover cũ */
+}
+
+
+/* --- Responsive Styles (Giữ nguyên hoặc điều chỉnh lại các breakpoint cho phù hợp) --- */
+@media (max-width: 900px) {
+  .container {
+    max-width: 700px;
+    min-height: 520px;
+    /* Có thể giữ hoặc bỏ nếu muốn chiều cao linh hoạt hơn */
+  }
+
+  .leftPanel,
+  .rightPanel {
+    padding: 35px 40px;
+  }
+
+  .leftTitle {
+    font-size: 32px;
+  }
+
+  .rightTitle {
+    font-size: 26px;
+  }
+}
+
+/* LoginPage.module.css */
+.errorMessageGlobal {
+  background-color: #FFF5F5;
+  color: #C53030;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #FED7D7;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.panelButton {
+  /* Ví dụ cho nút ở panel trái */
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  border-radius: 25px;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.panelButton:hover {
+  background-color: #FFFFFF;
+  color: #5D54A4;
+  /* Hoặc màu bạn muốn */
+}
+
+.switchToRegister {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555F6B;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #4299E1;
+  /* Hoặc màu link bạn muốn */
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: 0;
+    /* Có thể bỏ padding của pageWrapper trên mobile để container chiếm sát hơn */
+  }
+
+  .container {
+    flex-direction: column;
+    min-height: 100vh;
+    /* <<<< CHO PHÉP CONTAINER CHIẾM TOÀN BỘ CHIỀU CAO VIEWPORT KHI XẾP CHỒNG */
+    width: 100%;
+    /* <<<< Chiếm toàn bộ chiều rộng */
+    max-width: 100%;
+    /* <<<< Bỏ giới hạn max-width riêng của desktop */
+    border-radius: 0;
+    /* <<<< Bỏ bo góc khi full màn hình mobile */
+    box-shadow: none;
+    /* <<<< Bỏ bóng đổ khi full màn hình mobile */
+    margin-top: 0;
+    /* Bỏ margin nếu có */
+    margin-bottom: 0;
+  }
+
+  .leftPanel {
+    flex: 1 1 auto;
+    /* Cho phép co giãn, hoặc đặt một min-height cụ thể */
+    /* min-height: 250px; */
+    /* Ví dụ chiều cao tối thiểu cho panel trái */
+    width: 100%;
+    border-radius: 0;
+    /* Bỏ bo góc riêng của panel */
+    padding: 30px 25px;
+  }
+
+  .leftTitle {
+    font-size: 28px;
+  }
+
+  .leftText {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .signUpButton {
+    padding: 10px 30px;
+    font-size: 15px;
+  }
+
+  .rightPanel {
+    flex: 1 1 auto;
+    /* Cho phép co giãn */
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 0;
+    justify-content: center;
+    /* Căn giữa nội dung form nếu không quá dài */
+  }
+
+  .formContainer {
+    max-width: 400px;
+    /* Vẫn giới hạn chiều rộng của form */
+    padding: 10px;
+  }
+
+  .rightTitle {
+    font-size: 24px;
+    margin-top: 0;
+    /* Reset margin top nếu không cần */
+    margin-bottom: 25px;
+  }
+
+  .input {
+    padding: 14px 16px 14px 45px;
+    font-size: 14px;
+  }
+
+  .inputIcon {
+    font-size: 16px;
+    left: 16px;
+  }
+
+  .signInButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .formOptions {
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Bỏ media query cho max-width: 480px nếu @media (max-width: 768px) đã đủ
+   Hoặc bạn có thể giữ lại để tinh chỉnh thêm cho màn hình rất nhỏ.
+*/
+/*
+@media (max-width: 480px) {
+  .leftPanel, .rightPanel {
+    padding: 25px 20px;
+  }
+  .leftTitle {
+    font-size: 24px;
+  }
+  .rightTitle {
+    font-size: 22px;
+  }
+  .formContainer {
+      padding: 5px;
+  }
+}
+*/

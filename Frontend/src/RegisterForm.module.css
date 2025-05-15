@@ -1,0 +1,243 @@
+/* src/RegisterForm.module.css */
+.formContainer {
+    width: 100%;
+    max-width: 400px;
+    /* Hoặc kích thước bạn muốn */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Styles for being part of a larger layout, e.g., the right panel */
+    /* background-color: #FFFFFF; */
+    /* Uncomment if this is a standalone card */
+    /* border-radius: 12px; */
+    /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
+}
+
+.title {
+    color: #3D4C8D;
+    /* Giống .rightTitle trong LoginPage */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    /* Khoảng cách giữa các input group */
+}
+
+.inputGroup {
+    position: relative;
+    width: 100%;
+    /* Ensure input group takes full width */
+    margin-bottom: 1rem;
+}
+
+.input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    font-size: 15px;
+    color: #333;
+    background-color: #F7F8FC;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    color: #A0AEC0;
+}
+
+.input:focus {
+    border-color: #A3BFFA;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+/* Style cho input khi có lỗi ở trường đó */
+.inputError {
+    border-color: #E53E3E !important;
+    /* Màu viền đỏ cho input lỗi, !important để ghi đè nếu cần */
+}
+
+.inputError:focus {
+    border-color: #E53E3E !important;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2) !important;
+    /* Bóng mờ đỏ khi focus input lỗi */
+}
+
+/* Thông báo lỗi chung (ví dụ: lỗi API) - Dựa trên style .errorMessage của bạn */
+.errorMessageGlobal {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #FFF5F5;
+    /* Nền đỏ nhạt cho dễ thấy hơn */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #FED7D7;
+    /* Viền đỏ nhạt */
+}
+
+/* Thông báo lỗi cho từng trường input */
+.errorMessageField {
+    color: #E53E3E;
+    /* MÀU CHỮ ĐỎ CHO LỖI */
+    font-size: 0.875rem;
+    /* ~14px */
+    margin-top: 6px;
+    /* Khoảng cách với input phía trên */
+    text-align: left;
+    /* Lỗi của trường nên canh trái */
+    width: 100%;
+    /* Đảm bảo chiếm đủ chiều rộng */
+}
+
+.successMessage {
+    background-color: #F0FFF4;
+    color: #2F855A;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #9AE6B4;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 15px;
+    background-color: #4299E1;
+    /* Giống .signInButton */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submitButton:hover {
+    background-color: #3182CE;
+}
+
+.submitButton:disabled {
+    background-color: #a7c7e7;
+    cursor: not-allowed;
+}
+
+.submitButton.loading {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.switchToLogin {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    /* Căn giữa phần text này */
+}
+
+.linkButton {
+    background: none;
+    border: none;
+    color: #4299E1;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    /* Giữ nguyên hoặc inherit */
+}
+
+.linkButton:hover {
+    text-decoration: underline;
+}
+
+.passwordRequirements {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.passwordRequirements ul {
+    margin: 0.5rem 0 0 1.5rem;
+    padding: 0;
+}
+
+.passwordRequirements li {
+    margin: 0.25rem 0;
+}
+
+.activationNotice {
+  background-color: #EBF8FF;
+  border: 1px solid #BEE3F8;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.activationNotice h3 {
+  color: #2B6CB0;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.activationNotice p {
+  color: #4A5568;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.captchaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.captchaContainer > div {
+  transform: scale(0.9);
+  transform-origin: 0 0;
+}
+
+.recaptcha {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
